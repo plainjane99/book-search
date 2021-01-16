@@ -1,7 +1,12 @@
 const express = require('express');
 const path = require('path');
 const db = require('./config/connection');
+
+// ---------------------------------------------------
+// DELETE THIS WHEN REFACTORING IS COMPLETE ----------
 const routes = require('./routes');
+// DELETE THIS WHEN REFACTORING IS COMPLETE ----------
+// ---------------------------------------------------
 
 // import ApolloServer
 const { ApolloServer } = require('apollo-server-express');
@@ -33,7 +38,11 @@ if (process.env.NODE_ENV === 'production') {
   app.use(express.static(path.join(__dirname, '../client/build')));
 }
 
+// ---------------------------------------------------
+// DELETE THIS WHEN REFACTORING IS COMPLETE ----------
 app.use(routes);
+// DELETE THIS WHEN REFACTORING IS COMPLETE ----------
+// ---------------------------------------------------
 
 // serve up the React front-end code in production if we make a GET request to any location on the server that doesn't have an explicit route defined
 app.get('*', (req, res) => {
