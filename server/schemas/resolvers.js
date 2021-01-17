@@ -25,15 +25,6 @@ const resolvers = {
             throw new AuthenticationError('Not logged in');
         },
 
-        // savedBooks: async (parent, { username }) => {
-        //     const params = username ? { username } : {};
-        //     return Book.find(params);
-        // },
-
-        // book: async (parent, { _id }) => {
-        //     return Book.findOne({ _id });
-        // }
-
     },
 
     Mutation: {
