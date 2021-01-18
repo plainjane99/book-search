@@ -17,7 +17,7 @@ const resolvers = {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id })
                     .select('-__v -password')
-                    .populate('savedBooks')
+                    // .populate('savedBooks');
 
                 return userData;
             }
@@ -62,16 +62,20 @@ const resolvers = {
             return { token, user };
         },
 
-        saveBook: async (parent, args, context) => {
+        saveBook: async (parent, { bookData }, context) => {
             // only if users are logged in will the method run
             if (context.user) {
 
-                console.log("This is the input that was received: " + args);
+                // console.log("This is the input that was received: " + args);
                 console.log("This is the user ID: " + context.user._id);
+                console.log(bookData.bookId);
+
+                // const book = await Book.create(args);
+                // console.log(book);
 
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $push: { savedBooks: args } },
+                    { $push: { savedBooks: bookData } },
                     // return the updated document
                     { new: true }
                 );
